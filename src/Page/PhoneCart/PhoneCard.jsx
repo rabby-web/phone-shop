@@ -1,7 +1,17 @@
-import React from "react";
-
 const PhoneCard = ({ phone }) => {
   const { image, phone_name, brand_name, price, id } = phone || {};
+  const handleAddToFavorite = () => {
+    const addFavoriteArray = [];
+    const favoriteItems = JSON.parse(localStorage.getItem("favorite"));
+    if (!favoriteItems) {
+      addFavoriteArray.push(phone);
+      localStorage.setItem("favorite", JSON.stringify(addFavoriteArray));
+      alert("product");
+    } else {
+      addFavoriteArray.push(...favoriteItems, phone);
+      localStorage.setItem("favorite", JSON.stringify(addFavoriteArray));
+    }
+  };
   return (
     <div className="m-3">
       <div className="relative flex w-full max-w-[48rem] flex-row rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
@@ -19,17 +29,17 @@ const PhoneCard = ({ phone }) => {
           <p className="mb-8 block font-sans text-sm font-normal leading-relaxed text-gray-700 antialiased">
             Other features that may be found on mobile phones include GPS
             navigation, music (MP3) and video (MP4) playback, RDS radio
-            receiver, built-in projector, vibration and other "silent" ring
-            options, alarms, memo recording, personal digital assistant
-            functions, ability to watch streaming video, video download, video
-            calling
+            receiver, built-in projector, vibration and other ring options,
+            alarms, memo recording, personal digital assistant functions,
+            ability to watch streaming video, video download, video calling
           </p>
-          <a className="inline-block" href="#">
+          <a className="inline-block" href="">
             <button
+              onClick={handleAddToFavorite}
               className="flex select-none items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
               type="button"
             >
-              Learn More
+              Add To Favorite
               <svg
                 xmlns="http://www.w3.org/2000/svg"
                 fill="none"

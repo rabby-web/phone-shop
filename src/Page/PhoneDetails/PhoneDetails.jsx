@@ -7,9 +7,10 @@ const PhoneDetails = () => {
   const { id } = useParams();
   const phones = useLoaderData();
   useEffect(() => {
-    const findPhones = phones.find((phone) => phone.id === id);
+    const findPhones = phones?.find((phone) => phone.id === id);
     setPhone(findPhones);
   }, [id, phones]);
+
   return (
     <div>
       <PhoneCard phone={phone}></PhoneCard>
