@@ -1,8 +1,9 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const Phone = ({ phone }) => {
   console.log(phone);
-  const { image, phone_name, brand_name, price } = phone || {};
+  const { image, phone_name, brand_name, price, id } = phone || {};
   return (
     <div>
       <div className="relative flex w-full m-3 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
@@ -23,12 +24,14 @@ const Phone = ({ phone }) => {
           </p>
         </div>
         <div className="p-6 pt-0">
-          <button
-            className="block w-full select-none rounded-lg bg-blue-600  py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-            type="button"
-          >
-            View Details
-          </button>
+          <Link to={`/phones/${id}`}>
+            <button
+              className="block w-full select-none rounded-lg bg-blue-600  py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-white transition-all hover:scale-105 focus:scale-105 focus:opacity-[0.85] active:scale-100 active:opacity-[0.85] disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+              type="button"
+            >
+              View Details
+            </button>
+          </Link>
         </div>
       </div>
     </div>

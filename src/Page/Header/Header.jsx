@@ -22,7 +22,7 @@ const Header = () => {
           </li>
           <li>
             <NavLink
-              to="/phones"
+              to="/favorites"
               className={({ isActive, isPending }) =>
                 isPending
                   ? "pending"
@@ -31,7 +31,7 @@ const Header = () => {
                   : ""
               }
             >
-              Phones
+              Favorites
             </NavLink>
           </li>
           <li>
