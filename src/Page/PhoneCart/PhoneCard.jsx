@@ -1,15 +1,24 @@
+import swal from "sweetalert";
+
 const PhoneCard = ({ phone }) => {
   const { image, phone_name, brand_name, price, id } = phone || {};
   const handleAddToFavorite = () => {
     const addFavoriteArray = [];
-    const favoriteItems = JSON.parse(localStorage.getItem("favorite"));
+    const favoriteItems = JSON.parse(localStorage.getItem("favorites"));
     if (!favoriteItems) {
       addFavoriteArray.push(phone);
-      localStorage.setItem("favorite", JSON.stringify(addFavoriteArray));
-      alert("product");
+      localStorage.setItem("favorites", JSON.stringify(addFavoriteArray));
+      swal("Good job!", "Products added successfully!", "success");
     } else {
-      addFavoriteArray.push(...favoriteItems, phone);
-      localStorage.setItem("favorite", JSON.stringify(addFavoriteArray));
+      const isExist = favoriteItems.find((phone) => phone.id === id);
+      console.log(isExist);
+      if (!isExist) {
+        addFavoriteArray.push(...favoriteItems, phone);
+        localStorage.setItem("favorites", JSON.stringify(addFavoriteArray));
+        swal("Good job!", "Products added successfully!", "success");
+      } else {
+        swal("Error!", "No duplicate !", "error");
+      }
     }
   };
   return (
@@ -33,7 +42,7 @@ const PhoneCard = ({ phone }) => {
             alarms, memo recording, personal digital assistant functions,
             ability to watch streaming video, video download, video calling
           </p>
-          <a className="inline-block" href="">
+          <a className="inline-block" href="#">
             <button
               onClick={handleAddToFavorite}
               className="flex select-none items-center gap-2 rounded-lg py-3 px-6 text-center align-middle font-sans text-xs font-bold uppercase text-pink-500 transition-all hover:bg-pink-500/10 active:bg-pink-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
