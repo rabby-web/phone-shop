@@ -17,12 +17,21 @@ const Favorites = () => {
   return (
     <div>
       {noFound ? (
-        <p>Phones Add To Favorites</p>
+        <p className="text-center h-40 text-2xl font-bold flex items-center justify-center">
+          Phones Add To Favorites
+        </p>
       ) : (
-        <div className="grid grid-cols-1 lg:grid-cols-2">
-          {favorites.map((phone) => (
-            <PhoneCard key={phone.id} phone={phone}></PhoneCard>
-          ))}
+        <div>
+          {favorites.length > 0 && (
+            <button className="py-2 px-4 bg-red-600 text-white rounded-md m-3">
+              Delete
+            </button>
+          )}
+          <div className="grid grid-cols-1 lg:grid-cols-2">
+            {favorites.map((phone) => (
+              <PhoneCard key={phone.id} phone={phone}></PhoneCard>
+            ))}
+          </div>
         </div>
       )}
     </div>
