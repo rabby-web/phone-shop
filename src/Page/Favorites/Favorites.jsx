@@ -14,6 +14,11 @@ const Favorites = () => {
     }
   }, []);
   console.log(favorites);
+  const handleRemove = () => {
+    localStorage.clear();
+    setFavorites([]);
+    setNoFound("No Data Found");
+  };
   return (
     <div>
       {noFound ? (
@@ -23,8 +28,11 @@ const Favorites = () => {
       ) : (
         <div>
           {favorites.length > 0 && (
-            <button className="py-2 px-4 bg-red-600 text-white rounded-md m-3">
-              Delete
+            <button
+              onClick={handleRemove}
+              className="py-2 px-4 bg-red-600 text-white rounded-md m-3 block mx-auto"
+            >
+              Delete All Items
             </button>
           )}
           <div className="grid grid-cols-1 lg:grid-cols-2">
